@@ -11,8 +11,8 @@ function showLanguage(language) {
         <li><button onclick="showIndefArticles()">Artículos indefinidos</button></li>
         <li><button onclick="showPossessivePronouns()">Pronombres posesivos</button></li>
         <li><button onclick="showReflexivePronouns()">Pronombres reflexivos</button></li>
+        <li><button onclick="showDemonstrativPronouns()">Pronombres demostrativos</button></li>
 
-        <li><button>Pronombres demostrativos</button></li>
         <li><button>Desafío</button></li>
       </ul>
       <button onclick="showLanguage('')">Volver al inicio</button>
@@ -290,5 +290,55 @@ function mostrarReflexivo() {
   } else {
     resultadoDiv.innerHTML = `<p>No se encontró el pronombre reflexivo.</p>`;
   }
+}
+
+// ----------- PRONOMBRES DEMOSTRATIVOS --------------
+function showDemonstrativPronouns() {
+  const contentDiv = document.getElementById("language-content");
+  contentDiv.innerHTML = `
+    <h3>Pronombres demostrativos</h3>
+    
+    <label for="casoDem">Caso gramatical:</label>
+    <select id="casoDem">
+      <option value="nominativ">Nominativ</option>
+      <option value="akkusativ">Akkusativ</option>
+      <option value="dativ">Dativ</option>
+      <option value="genitiv">Genitiv</option>
+    </select>
+    
+    <br><br>
+    
+    <label for="generoDem">Género/Número:</label>
+    <select id="generoDem">
+      <option value="masc">Maskulin</option>
+      <option value="fem">Feminin</option>
+      <option value="neut">Neutrum</option>
+      <option value="pl">Plural</option>
+    </select>
+    
+    <br><br>
+    
+    <button onclick="mostrarDemostrativo()">Mostrar resultado</button>
+    <div id="resultadoDem"></div>
+    
+    <br><br>
+    <button onclick="showLanguage('aleman')">Volver al inicio</button>
+  `;
+}
+
+function mostrarDemostrativo() {
+  const caso = document.getElementById("casoDem").value;
+  const genero = document.getElementById("generoDem").value;
+  const resultadoDiv = document.getElementById("resultadoDem");
+
+  const demostrativos = {
+    nominativ: { masc: "dieser Hund", fem: "diese Katze", neut: "dieses Haus", pl: "diese Kinder" },
+    akkusativ: { masc: "diesen Hund", fem: "diese Katze", neut: "dieses Haus", pl: "diese Kinder" },
+    dativ: { masc: "diesem Hund", fem: "dieser Katze", neut: "diesem Haus", pl: "diesen Kindern" },
+    genitiv: { masc: "dieses Hundes", fem: "dieser Katze", neut: "dieses Hauses", pl: "dieser Kinder" }
+  };
+
+  const ejemplo = demostrativos[caso][genero];
+  resultadoDiv.innerHTML = `<p><strong>Resultado:</strong> ${ejemplo}</p>`;
 }
 
