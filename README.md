@@ -1,2 +1,2 @@
-# linguimap
-Guía de aprendizaje de idiomas
+# Deklinator
+Declinador de artículos y pronombres en alemán
