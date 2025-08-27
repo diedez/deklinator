@@ -10,8 +10,8 @@ function showLanguage(language) {
         <li><button onclick="showDefArticles()">Artículos definidos</button></li>
         <li><button onclick="showIndefArticles()">Artículos indefinidos</button></li>
         <li><button onclick="showPossessivePronouns()">Pronombres posesivos</button></li>
+        <li><button onclick="showReflexivePronouns()">Pronombres reflexivos</button></li>
 
-        <li><button>Pronombres reflexivos</button></li>
         <li><button>Pronombres demostrativos</button></li>
         <li><button>Desafío</button></li>
       </ul>
@@ -217,5 +217,78 @@ function mostrarPosesivo() {
 
   resultadoDiv.innerHTML = `<p><strong>Resultado:</strong> ${ejemplo}</p>`;
 }
+// ----------- PRONOMBRES REFLEXIVOS --------------
 
+function showReflexivePronouns() {
+  const contentDiv = document.getElementById("language-content");
+  contentDiv.innerHTML = `
+    <h3>Pronombres reflexivos</h3>
+    
+    <label for="pronombreRef">Pronombre personal:</label>
+    <select id="pronombreRef">
+      <option value="ich">ich (yo)</option>
+      <option value="du">du (tú)</option>
+      <option value="er">er (él)</option>
+      <option value="sie">sie (ella)</option>
+      <option value="es">es (ello)</option>
+      <option value="wir">wir (nosotros)</option>
+      <option value="ihr">ihr (vosotros)</option>
+      <option value="sie_pl">sie (ellos)</option>
+      <option value="Sie">Sie (usted/ustedes)</option>
+    </select>
+    
+    <br><br>
+    
+    <label for="casoRef">Caso gramatical:</label>
+    <select id="casoRef">
+      <option value="acusativo">Akkusativ</option>
+      <option value="dativo">Dativ</option>
+    </select>
+    
+    <br><br>
+    
+    <button onclick="mostrarReflexivo()">Mostrar resultado</button>
+    <div id="resultadoRef"></div>
+    
+    <br><br>
+    <button onclick="showLanguage('aleman')">Volver al inicio</button>
+  `;
+}
+
+function mostrarReflexivo() {
+  const pronombre = document.getElementById("pronombreRef").value;
+  const caso = document.getElementById("casoRef").value;
+  const resultadoDiv = document.getElementById("resultadoRef");
+
+  const reflexivos = {
+    ich: { acusativo: "mich", dativo: "mir" },
+    du: { acusativo: "dich", dativo: "dir" },
+    er: { acusativo: "sich", dativo: "sich" },
+    sie: { acusativo: "sich", dativo: "sich" },
+    es: { acusativo: "sich", dativo: "sich" },
+    wir: { acusativo: "uns", dativo: "uns" },
+    ihr: { acusativo: "euch", dativo: "euch" },
+    sie_pl: { acusativo: "sich", dativo: "sich" },
+    Sie: { acusativo: "sich", dativo: "sich" }
+  };
+
+  const ejemplos = {
+    mich: "Ich wasche mich. (Me lavo.)",
+    mir: "Ich wasche mir die Hände. (Me lavo las manos.)",
+    dich: "Ich sehe dich. (Te veo.)",
+    dir: "Ich helfe dir. (Te ayudo.)",
+    sich: "Er wäscht sich. (Él se lava.)",
+    uns: "Wir freuen uns. (Nos alegramos.)",
+    euch: "Ich sehe euch. (Los veo.)"
+  };
+
+  const forma = reflexivos[pronombre]?.[caso];
+  const ejemplo = ejemplos[forma] || "";
+
+  if (forma) {
+    resultadoDiv.innerHTML = `<p><strong>Resultado:</strong> ${forma}<br>Ejemplo: ${ejemplo}</p>`;
+  } else {
+    resultadoDiv.innerHTML = `<p>No se encontró el pronombre reflexivo.</p>`;
+  }
+}
 
