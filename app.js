@@ -1,4 +1,4 @@
-// app.js
+in// app.js
 
 function showLanguage(language) {
   const contentDiv = document.getElementById("language-content");
@@ -19,8 +19,8 @@ function showLanguage(language) {
     `;
   } else {
     contentDiv.innerHTML = `
-      <h3>Bienvenido a Lingüimap</h3>
-      <p>Selecciona un idioma para comenzar a practicar.</p>
+      <h3>Bienvenido a Deklinator</h3>
+      <p>Selecciona para comenzar a praccticar.</p>
       <button onclick="showLanguage('aleman')">Alemán</button>
     `;
   }
