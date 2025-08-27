@@ -217,3 +217,5 @@ function mostrarPosesivo() {
 
   resultadoDiv.innerHTML = `<p><strong>Resultado:</strong> ${ejemplo}</p>`;
 }
+
+
