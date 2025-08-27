@@ -19,8 +19,8 @@ function showLanguage(language) {
     `;
   } else {
     contentDiv.innerHTML = `
-      <h3>Bienvenido a Lingüimap</h3>
-      <p>Selecciona un idioma para comenzar a practicar.</p>
+      <h3>Bienvenido a Deklinator</h3>
+      <p>Selecciona para comenzar a practicar.</p>
       <button onclick="showLanguage('aleman')">Alemán</button>
     `;
   }
