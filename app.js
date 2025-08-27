@@ -7,11 +7,10 @@ function showLanguage(language) {
     contentDiv.innerHTML = `
       <h3>Alemán</h3>
       <ul>
-        <li><button onclick="showDefArticles()">Artículos definidos</button></li>
+       <li><button onclick="showDefArticles()">Artículos definidos</button></li>
         <li><button onclick="showIndefArticles()">Artículos indefinidos</button></li>
         <li><button onclick="showPossessivePronouns()">Pronombres posesivos</button></li>
         <li><button onclick="showReflexivePronouns()">Pronombres reflexivos</button></li>
-
 
         <li><button>Pronombres demostrativos</button></li>
         <li><button>Desafío</button></li>
