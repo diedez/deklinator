@@ -13,7 +13,7 @@ function showLanguage(language) {
         <li><button onclick="showReflexivePronouns()">Pronombres reflexivos</button></li>
         <li><button onclick="showDemonstrativPronouns()">Pronombres demostrativos</button></li>
 
-        <li><button>Desafío</button></li>
+        //<li><button>Desafío</button></li>
       </ul>
       <button onclick="showLanguage('')">Volver al inicio</button>
     `;
