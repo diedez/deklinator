@@ -77,3 +77,13 @@ select {
   padding: 5px;
   font-size: 1rem;
 }
+/* Enlaces de correo en el header */
+header a[href^="mailto:"] {
+  color: #f7e199;   /* amarillo pastel */
+  text-decoration: none; /* opcional: quita subrayado */
+}
+
+header a[href^="mailto:"]:hover {
+  color: #f1d87f;   /* amarillo un poco más oscuro al pasar el mouse */
+  text-decoration: underline; /* opcional */
+}
