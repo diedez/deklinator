@@ -102,6 +102,13 @@ function showIndefArticles() {
     
     <br><br>
     
+    <!-- ACÁ EL CHECKBOX -->
+    <label>
+      <input type="checkbox" id="negacionIndef"> Forma negativa
+    </label>
+    
+    <br><br>
+    
     <button onclick="mostrarIndefinido()">Mostrar resultado</button>
     <div id="resultadoIndef"></div>
     
@@ -113,19 +120,78 @@ function showIndefArticles() {
 function mostrarIndefinido() {
   const caso = document.getElementById("casoIndef").value;
   const genero = document.getElementById("generoIndef").value;
+  const usarNegacion = document.getElementById("negacionIndef").checked; // ← si está tildado
   const resultadoDiv = document.getElementById("resultadoIndef");
 
   const articulosIndef = {
     nominativ: { masc: "ein Hund", fem: "eine Katze", neut: "ein Haus", pl: "— Kinder" },
     akkusativ: { masc: "einen Hund", fem: "eine Katze", neut: "ein Haus", pl: "— Kinder" },
-    dativ: { masc: "einem Hund", fem: "einer Katze", neut: "einem Haus", pl: "— Kindern" },
-    genitiv: { masc: "eines Hundes", fem: "einer Katze", neut: "eines Hauses", pl: "— Kinder" }
+    dativ:    { masc: "einem Hund", fem: "einer Katze", neut: "einem Haus", pl: "— Kindern" },
+    genitiv:  { masc: "eines Hundes", fem: "einer Katze", neut: "eines Hauses", pl: "— Kinder" }
   };
 
-  const ejemplo = articulosIndef[caso][genero];
+  const articulosNeg = {
+    nominativ: { masc: "kein Hund", fem: "keine Katze", neut: "kein Haus", pl: "keine Kinder" },
+    akkusativ: { masc: "keinen Hund", fem: "keine Katze", neut: "kein Haus", pl: "keine Kinder" },
+    dativ:    { masc: "keinem Hund", fem: "keiner Katze", neut: "keinem Haus", pl: "keinen Kindern" },
+    genitiv:  { masc: "keines Hundes", fem: "keiner Katze", neut: "keines Hauses", pl: "keiner Kinder" }
+  };
+
+  const ejemplo = usarNegacion 
+    ? articulosNeg[caso][genero] 
+    : articulosIndef[caso][genero];
+
   resultadoDiv.innerHTML = `<p><strong>Resultado:</strong> ${ejemplo}</p>`;
 }
 
+
+function showPossessivePronouns() {
+  const contentDiv = document.getElementById("language-content");
+  contentDiv.innerHTML = `
+    <h3>Pronombres posesivos</h3>
+    
+    <label for="pronombre">Pronombre personal:</label>
+    <select id="pronombre">
+      <option value="ich">ich (yo)</option>
+      <option value="du">du (tú)</option>
+      <option value="er">er (él)</option>
+      <option value="sie">sie (ella)</option>
+      <option value="es">es (ello)</option>
+      <option value="wir">wir (nosotros)</option>
+      <option value="ihr">ihr (vosotros)</option>
+      <option value="sie_pl">sie (ellos)</option>
+      <option value="Sie">Sie (usted)</option>
+    </select>
+    
+    <br><br>
+    
+    <label for="casoPos">Caso gramatical:</label>
+    <select id="casoPos">
+      <option value="nominativ">Nominativ</option>
+      <option value="akkusativ">Akkusativ</option>
+      <option value="dativ">Dativ</option>
+      <option value="genitiv">Genitiv</option>
+    </select>
+    
+    <br><br>
+    
+    <label for="generoPos">Género / número:</label>
+    <select id="generoPos">
+      <option value="masc">Maskulin</option>
+      <option value="fem">Feminin</option>
+      <option value="neut">Neutrum</option>
+      <option value="pl">Plural</option>
+    </select>
+    
+    <br><br>
+    
+    <button onclick="mostrarPosesivo()">Mostrar resultado</button>
+    <div id="resultadoPos"></div>
+    
+    <br><br>
+    <button onclick="showLanguage('aleman')">Volver al inicio</button>
+  `;
+}
 function showPossessivePronouns() {
   const contentDiv = document.getElementById("language-content");
   contentDiv.innerHTML = `
