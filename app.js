@@ -53,7 +53,8 @@ function showLanguage(language) {
     contentDiv.innerHTML = `
       <h3>Alemán</h3>
       <ul>
-       <li><button onclick="showDefArticles()">Artículos definidos</button></li>
+        <li><button onclick="showPronombresPersonales()">Pronombres personales</button></li>
+        <li><button onclick="showDefArticles()">Artículos definidos</button></li>
         <li><button onclick="showIndefArticles()">Artículos indefinidos</button></li>
         <li><button onclick="showPossessivePronouns()">Pronombres posesivos</button></li>
         <li><button onclick="showReflexivePronouns()">Pronombres reflexivos</button></li>
@@ -73,6 +74,126 @@ function showLanguage(language) {
   }
 }
 
+// -----------PRONOMBRES PERSONALES --------------
+function showPronombresPersonales() {
+  const contentDiv = document.getElementById("language-content");
+  contentDiv.innerHTML = `
+    <h3>Pronombres personales</h3>
+
+    <label for="pronPers">Pronombre:</label>
+    <select id="pronPers">
+      <option value="ich">ich</option>
+      <option value="du">du</option>
+      <option value="er">er</option>
+      <option value="sie">sie</option>
+      <option value="es">es</option>
+      <option value="wir">wir</option>
+      <option value="ihr">ihr</option>
+      <option value="sie_pl">sie (plural)</option>
+      <option value="Sie">Sie (formal)</option>
+    </select>
+
+    <br><br>
+
+    <label for="casoPers">Caso gramatical:</label>
+    <select id="casoPers">
+      <option value="nominativ">Nominativ</option>
+      <option value="akkusativ">Akkusativ</option>
+      <option value="dativ">Dativ</option>
+      <option value="genitiv">Genitiv</option>
+    </select>
+
+    <br><br>
+
+    <button onclick="mostrarPersonal()">Mostrar resultado</button>
+    <div id="resultadoPers"></div>
+
+    <br><br>
+    <button onclick="showLanguage('aleman')">← Volver al inicio</button>
+  `;
+}
+
+function mostrarPersonal() {
+  const pron = document.getElementById("pronPers").value;
+  const caso = document.getElementById("casoPers").value;
+  const resultadoDiv = document.getElementById("resultadoPers");
+
+  const pronombresPersonales = {
+    nominativ: {
+      ich: "ich", du: "du", er: "er", sie: "sie", es: "es",
+      wir: "wir", ihr: "ihr", sie_pl: "sie", Sie: "Sie"
+    },
+    akkusativ: {
+      ich: "mich", du: "dich", er: "ihn", sie: "sie", es: "es",
+      wir: "uns", ihr: "euch", sie_pl: "sie", Sie: "Sie"
+    },
+    dativ: {
+      ich: "mir", du: "dir", er: "ihm", sie: "ihr", es: "ihm",
+      wir: "uns", ihr: "euch", sie_pl: "ihnen", Sie: "Ihnen"
+    },
+    genitiv: {
+      ich: "meiner", du: "deiner", er: "seiner", sie: "ihrer", es: "seiner",
+      wir: "unser", ihr: "euer", sie_pl: "ihrer", Sie: "Ihrer"
+    }
+  };
+
+  const ejemplos = {
+    nominativ: {
+      ich: "Ich bin müde. (Yo estoy cansado)",
+      du: "Du bist nett. (Tú eres amable)",
+      er: "Er schläft. (Él duerme)",
+      sie: "Sie singt. (Ella canta)",
+      es: "Es regnet. (Llueve)",
+      wir: "Wir lernen Deutsch. (Nosotros aprendemos alemán)",
+      ihr: "Ihr spielt Fußball. (Vosotros jugáis fútbol)",
+      sie_pl: "Sie wohnen hier. (Ellos viven aquí)",
+      Sie: "Sie kommen spät. (Usted viene tarde)"
+    },
+    akkusativ: {
+      ich: "Er sieht mich. (Él me ve)",
+      du: "Ich kenne dich. (Yo te conozco)",
+      er: "Ich höre ihn. (Yo lo oigo)",
+      sie: "Er liebt sie. (Él la ama)",
+      es: "Ich habe es. (Yo lo tengo)",
+      wir: "Sie besuchen uns. (Ellos nos visitan)",
+      ihr: "Wir hören euch. (Nosotros los oímos)",
+      sie_pl: "Ich treffe sie. (Yo los encuentro)",
+      Sie: "Ich sehe Sie. (Yo lo/la veo a usted)"
+    },
+    dativ: {
+      ich: "Sie hilft mir. (Ella me ayuda)",
+      du: "Ich gebe dir ein Buch. (Te doy un libro)",
+      er: "Ich antworte ihm. (Yo le respondo a él)",
+      sie: "Er gibt ihr ein Geschenk. (Él le da un regalo a ella)",
+      es: "Ich danke ihm. (Yo le agradezco a eso)",
+      wir: "Er schreibt uns. (Él nos escribe)",
+      ihr: "Ich sage euch die Wahrheit. (Les digo la verdad)",
+      sie_pl: "Ich helfe ihnen. (Yo los ayudo a ellos)",
+      Sie: "Ich zeige Ihnen den Weg. (Le muestro el camino a usted)"
+    },
+    genitiv: {
+      ich: "Ich erinnere mich meiner. (Yo me acuerdo de mí)",
+      du: "Wir gedenken deiner. (Nos acordamos de ti)",
+      er: "Sie bedarf seiner. (Ella necesita de él)",
+      sie: "Wir erinnern uns ihrer. (Nos acordamos de ella)",
+      es: "Wir gedenken seiner. (Nos acordamos de ello)",
+      wir: "Er bedarf unser. (Él necesita de nosotros)",
+      ihr: "Wir gedenken euer. (Nos acordamos de vosotros)",
+      sie_pl: "Wir erinnern uns ihrer. (Nos acordamos de ellos)",
+      Sie: "Wir gedenken Ihrer. (Nos acordamos de usted)"
+    }
+  };
+
+  const palabra = pronombresPersonales[caso][pron];
+  const ejemplo = ejemplos[caso][pron];
+
+  resultadoDiv.innerHTML = `
+    <p><strong>Resultado:</strong> ${palabra}</p>
+    <p><strong>Ejemplo:</strong> ${ejemplo}</p>
+  `;
+}
+
+// ----------- ARTÍCULOS INDEFINIDOS --------------
 function showDefArticles() {
   const contentDiv = document.getElementById("language-content");
   contentDiv.innerHTML = `
